@@ -14,11 +14,15 @@ import Drawer from "@material-ui/core/Drawer";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
 // core components
+
+import inputStyles from "assets/jss/material-kit-react/components/customInputStyle.js";
 import styles from "assets/jss/material-kit-react/components/headerStyle.js";
 
 const useStyles = makeStyles(styles);
+const useInputStyles = makeStyles(inputStyles);
 
 export default function Header(props) {
+  const inputClasses = useInputStyles();
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   React.useEffect(() => {
@@ -44,7 +48,12 @@ export default function Header(props) {
       document.body
         .getElementsByTagName("header")[0]
         .classList.add(classes[changeColorOnScroll.color]);
+
+      // document.getElementById("navSearch").classList.add(classes[inputClasses.whiteInput]);
+      // document.getElementById("navSearch").classList.add(classes[inputClasses.whiteUnderline]);
     } else {
+      // document.getElementById("navSearch").classList.add(classes[inputClasses.whiteInput]);
+      // document.getElementById("navSearch").classList.add(classes[inputClasses.whiteUnderline]);
       document.body
         .getElementsByTagName("header")[0]
         .classList.add(classes[color]);

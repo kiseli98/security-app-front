@@ -7,6 +7,10 @@
   "dependencies": {
     "@material-ui/core": "4.3.2",
     "@material-ui/icons": "4.2.1",
+    "@material-ui/pickers": "latest",
+    "material-ui-dropzone": "^2.4.7",
+    "@date-io/date-fns": "latest",
+    "date-fns": "next",
     "classnames": "2.2.6",
     "create-react-app": "^3.2.0",
     "history": "4.9.0",

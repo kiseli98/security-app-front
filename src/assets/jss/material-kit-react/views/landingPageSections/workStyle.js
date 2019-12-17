@@ -19,9 +19,16 @@ const workStyle = {
   textCenter: {
     textAlign: "center"
   },
+  space50: {
+    height: "50px",
+    display: "block"
+  },
   textArea: {
     marginRight: "15px",
     marginLeft: "15px"
+  },
+  black: {
+    color: "#000000"
   }
 };
 

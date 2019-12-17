@@ -17,6 +17,13 @@ const typographyStyle = {
     minHeight: "32px",
     textDecoration: "none"
   },
+  titleRegister: {
+    ...title,
+    marginTop: "30px",
+    color: "white",
+    minHeight: "32px",
+    textDecoration: "none"
+  },
   typo: {
     paddingLeft: "25%",
     marginBottom: "40px",
