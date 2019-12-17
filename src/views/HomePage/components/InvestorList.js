@@ -24,8 +24,7 @@ class ProjectList extends React.Component{
     }
 
     renderProjects(){
-        console.log(this.state.loadedInvestors);
-        return this.state.loadedInvestors.map( (investor,index) => (
+        return this.state.loadedInvestors.slice(0,3).map( (investor,index) => (
             <InvestorCard  
                 sm={7} lg={3}
                 key={index}

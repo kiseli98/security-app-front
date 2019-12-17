@@ -24,7 +24,7 @@ class ProjectList extends React.Component{
     }
 
     renderProjects(){
-        return this.state.loadedProjects.map( (project,index) => (
+        return this.state.loadedProjects.slice(0,3).map( (project,index) => (
             <ProjectCard  
                 sm={7} lg={3}
                 key={index}
