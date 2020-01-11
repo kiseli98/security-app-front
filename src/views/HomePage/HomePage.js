@@ -69,7 +69,7 @@ function HomePage(props) {
           </GridContainer>
         </div>
       </Parallax>
-      <GridContainer style={{paddingTop: '-100px'}} justify="center">
+      <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={8}>
           <Card>
             <Carousel {...settings}>
