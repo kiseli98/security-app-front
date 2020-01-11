@@ -16,6 +16,7 @@ import GridItem from "components/Grid/GridItem.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import NavPills from "components/NavPills/NavPills.js";
 import Parallax from "components/Parallax/Parallax.js";
+import ProjectList from "views/HomePage/components/ProjectList";
 
 import profile from "assets/img/faces/christian.jpg";
 
@@ -30,7 +31,11 @@ import work3 from "assets/img/examples/cynthia-del-rio.jpg";
 import work4 from "assets/img/examples/mariya-georgieva.jpg";
 import work5 from "assets/img/examples/clem-onojegaw.jpg";
 
+import PageHeader from "components/MyComp/Header/Header.js";
+
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
+import WorkSection from "../LandingPage/Sections/WorkSection";
+import ContactSection from "./components/ContactSection";
 
 const useStyles = makeStyles(styles);
 
@@ -45,17 +50,7 @@ export default function ProfilePage(props) {
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
   return (
     <div>
-      <Header
-        color="transparent"
-        brand="Material Kit React"
-        rightLinks={<HeaderLinks />}
-        fixed
-        changeColorOnScroll={{
-          height: 200,
-          color: "white"
-        }}
-        {...rest}
-      />
+      <PageHeader/>
       <Parallax small filter image={require("assets/img/profile-bg.jpg")} />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
@@ -67,7 +62,7 @@ export default function ProfilePage(props) {
                     <img src={profile} alt="..." className={imageClasses} />
                   </div>
                   <div className={classes.name}>
-                    <h3 className={classes.title}>Christian Louboutin</h3>
+                    <h3 className={classes.title}>John Doe</h3>
                     <h6>DESIGNER</h6>
                     <Button justIcon link className={classes.margin5}>
                       <i className={"fab fa-twitter"} />
@@ -84,10 +79,7 @@ export default function ProfilePage(props) {
             </GridContainer>
             <div className={classes.description}>
               <p>
-                An artist of considerable range, Chet Faker — the name taken by
-                Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs
-                and records all of his own music, giving it a warm, intimate
-                feel with a solid groove structure.{" "}
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan tempor turpis, eu porttitor sapien volutpat ac. Vivamus sit amet feugiat neque. Praesent placerat aliquam justo non venenatis. Ut ac tincidunt ipsum. Quisque faucibus libero mauris, eu congue sapien cursus nec. Maecenas tortor erat, porta quis justo et, vestibulum blandit ligula. Sed iaculis euismod eros, sit amet placerat magna. Praesent posuere lacus est, in varius leo malesuada at. Proin turpis odio, faucibus eget iaculis quis, accumsan mattis arcu. Sed nec nunc dapibus, fermentum nibh ut, luctus mi. Sed id augue nec ante imperdiet scelerisque in ac dui. Morbi hendrerit et orci eget lacinia. Ut nec nisl in enim porta mollis id id orci. Nunc eget facilisis diam.{" "}
               </p>
             </div>
             <GridContainer justify="center">
@@ -97,7 +89,7 @@ export default function ProfilePage(props) {
                   color="primary"
                   tabs={[
                     {
-                      tabButton: "Studio",
+                      tabButton: "Portfolio",
                       tabIcon: Camera,
                       tabContent: (
                         <GridContainer justify="center">
@@ -129,7 +121,7 @@ export default function ProfilePage(props) {
                       )
                     },
                     {
-                      tabButton: "Work",
+                      tabButton: "Project Work",
                       tabIcon: Palette,
                       tabContent: (
                         <GridContainer justify="center">
@@ -165,47 +157,34 @@ export default function ProfilePage(props) {
                         </GridContainer>
                       )
                     },
-                    {
-                      tabButton: "Favorite",
-                      tabIcon: Favorite,
-                      tabContent: (
-                        <GridContainer justify="center">
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={work4}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={studio3}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={work2}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={work1}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={studio1}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                        </GridContainer>
-                      )
-                    }
                   ]}
                 />
               </GridItem>
             </GridContainer>
+            <GridContainer justify="center">
+              <GridItem xs={12} sm={12} md={6}>
+                <div className={classes.profile}>
+                  <div className={classes.name}>
+                    <h2 className={classes.title}>Collaborated with:</h2>
+                  </div>
+                </div>
+              </GridItem>
+              <ProjectList />
+
+
+              <GridItem xs={12} sm={12} md={6}>
+                <div className={classes.profile}>
+                  <div className={classes.name}>
+                    <div className={classes.space50} />
+
+                    <h2 className={classes.title}>Invested in:</h2>
+                  </div>
+                </div>
+              </GridItem>
+              <ProjectList />
+            </GridContainer>
+            <ContactSection />
+
           </div>
         </div>
       </div>

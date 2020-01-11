@@ -52,16 +52,6 @@ export default function PageHeader(props) {
                 ]}
               />
             </ListItem>
-            <ListItem className={navbarClasses.listItem}>
-              <Button
-                href="#pablo"
-                className={navbarClasses.navLink}
-                onClick={e => e.preventDefault()}
-                color="transparent"
-              >
-                Link
-              </Button>
-            </ListItem>
           </List>
         }
         rightLinks={
@@ -112,7 +102,7 @@ export default function PageHeader(props) {
         }
         fixed
         changeColorOnScroll={{
-          height: 100,
+          height: 50,
           color: "info"
         }}
         {...rest}

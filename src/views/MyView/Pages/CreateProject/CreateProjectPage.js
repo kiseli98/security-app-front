@@ -23,7 +23,7 @@ import WorkSection from "./WorkSection.js";
 
 const useStyles = makeStyles(styles);
 
-export default function LandingPage(props) {
+export default function CreateProjectPage(props) {
   const classes = useStyles();
   const { ...rest } = props;
   return (

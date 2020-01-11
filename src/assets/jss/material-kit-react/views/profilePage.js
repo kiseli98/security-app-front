@@ -53,6 +53,10 @@ const profilePageStyle = {
     fontSize: "20px",
     color: "#999"
   },
+  space50: {
+    height: "100px",
+    display: "block"
+  },
   navWrapper: {
     margin: "20px auto 50px auto",
     textAlign: "center"
