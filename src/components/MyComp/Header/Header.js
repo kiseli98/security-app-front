@@ -11,13 +11,13 @@ import navbarStyles from "assets/jss/material-kit-react/views/componentsSections
 import Search from "@material-ui/icons/Search";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import profileImage from "assets/img/faces/avatar.jpg";
+import ProfileButton from "./ProfileButton";
 
 const useNavbarStyles = makeStyles(navbarStyles);
 
 export default function PageHeader(props) {
   const navbarClasses = useNavbarStyles();
-  const { ...rest } = props;
+  const {...rest} = props;
   return (
     <div>
       <Header
@@ -47,7 +47,7 @@ export default function PageHeader(props) {
                   "Medical",
                   "Sport",
                   "IT",
-                  { divider: true },
+                  {divider: true},
                   "See All"
                 ]}
               />
@@ -78,7 +78,7 @@ export default function PageHeader(props) {
                   "How GoFundMe works",
                   "What is crowdfunding",
                   "Free fundraising",
-                  { divider: true },
+                  {divider: true},
                   "Team fundraising",
                   "Fundraising tips",
                   "Fundraising ideas"
@@ -102,33 +102,11 @@ export default function PageHeader(props) {
                 }}
               />
               <Button justIcon size="sm" round color="white">
-                <Search className={navbarClasses.searchIcon} />
+                <Search className={navbarClasses.searchIcon}/>
               </Button>
             </ListItem>
             <ListItem className={navbarClasses.listItem}>
-              <CustomDropdown
-                left
-                caret={false}
-                hoverColor="black"
-                dropdownHeader="Dropdown Header"
-                buttonText={
-                  <img
-                    src={profileImage}
-                    className={navbarClasses.img}
-                    alt="profile"
-                  />
-                }
-                buttonProps={{
-                  className:
-                    navbarClasses.navLink + " " + navbarClasses.imageDropdownButton,
-                  color: "transparent"
-                }}
-                dropdownList={[
-                  "Me",
-                  "Settings and other stuff",
-                  "Sign out"
-                ]}
-              />
+              <ProfileButton/>
             </ListItem>
           </List>
         }

@@ -12,19 +12,21 @@ import ProfilePage from "views/ProfilePage/ProfilePage.js";
 import LoginPage from "views/MyView/Pages/LoginPage.js";
 import RegisterPage from "./views/MyView/Pages/RegisterPage";
 import CreateProjectPage from "./views/MyView/Pages/CreateProject/CreateProjectPage";
+import HomePage from "views/HomePage/HomePage.js";
+import ProjectPage from "views/ProjectPage/ProjectPage.js";
 
 var hist = createBrowserHistory();
 
 ReactDOM.render(
-  <Router history={hist}>
+    <Router history={hist}>
     <Switch>
+      <Route path="/home" component={HomePage}/>
+      <Route path="/project/:projectName" component={ProjectPage}/>
       <Route path="/landing-page" component={LandingPage} />
       <Route path="/profile-page" component={ProfilePage} />
-      <Route path="/login-page" component={LoginPage} />
-
-      <Route path="/test-register" component={RegisterPage} />
-      <Route path="/test-login" component={LoginPage} />
-      <Route path="/test-create-project" component={CreateProjectPage} />
+      <Route path="/register" component={RegisterPage} />
+      <Route path="/login" component={LoginPage} />
+      <Route path="/create-project" component={CreateProjectPage} />
       <Route path="/" component={Components} />
     </Switch>
   </Router>,

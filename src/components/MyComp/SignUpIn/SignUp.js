@@ -18,12 +18,45 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 
 import loginStyles from "assets/jss/material-kit-react/views/loginPage.js";
 import typoStyles from "assets/jss/material-kit-react/views/componentsSections/typographyStyle.js";
+import RestApiCalls from "../../../views/utils/RestApiCalls";
 
 const useLoginStyles = makeStyles(loginStyles);
 const useTypoStyles = makeStyles(typoStyles);
 
 export default function SignUp(props) {
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [passwordRepeat, setPasswordRepeat] = React.useState("");
+  const [email, setEmail] = React.useState("");
+
+  let checkPasswordMatch = () => {
+    return password !== passwordRepeat;
+  };
+
+  const setUsernameHandle = event => {
+    setUsername(event.target.value);
+  };
+
+  const setPasswordHandle = event => {
+    setPassword(event.target.value);
+  };
+
+  const setPasswordRepeatHandle = event => {
+    setPasswordRepeat(event.target.value);
+  };
+
+  const setEmailHandle = event => {
+    setEmail(event.target.value);
+  };
+
+  const register = () => {
+    RestApiCalls.register(username, password, email).then(resp => {
+      console.log(resp);
+    });
+  };
+
+
   setTimeout(function () {
     setCardAnimation("");
   }, 700);
@@ -49,6 +82,7 @@ export default function SignUp(props) {
                     fullWidth: true
                   }}
                   inputProps={{
+                    onChange: setUsernameHandle,
                     required: true,
                     type: "text",
                     endAdornment: (
@@ -93,6 +127,7 @@ export default function SignUp(props) {
                     fullWidth: true
                   }}
                   inputProps={{
+                    onChange: setEmailHandle,
                     type: "email",
                     required: true,
                     endAdornment: (
@@ -110,6 +145,7 @@ export default function SignUp(props) {
                     fullWidth: true
                   }}
                   inputProps={{
+                    onChange: setPasswordHandle,
                     required: true,
                     type: "password",
                     endAdornment: (
@@ -129,6 +165,7 @@ export default function SignUp(props) {
                     fullWidth: true
                   }}
                   inputProps={{
+                    onChange: setPasswordRepeatHandle,
                     required: true,
                     type: "password",
                     endAdornment: (
@@ -141,7 +178,7 @@ export default function SignUp(props) {
                 />
               </CardBody>
               <CardFooter className={loginClasses.cardFooter}>
-                <Button simple color="primary" size="lg">
+                <Button onClick={register} simple color="primary" size="lg" disabled={!checkPasswordMatch}>
                   Get started
                 </Button>
               </CardFooter>
