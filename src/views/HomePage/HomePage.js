@@ -26,6 +26,7 @@ import AboutUs from "views/HomePage/components/AboutUs";
 import {makeStyles} from "@material-ui/core/styles";
 import Parallax from "components/Parallax/Parallax.js";
 import backImage from "assets/img/bg7.jpg";
+import Footer from "../../components/Footer/Footer";
 
 const useLoginStyles = makeStyles(loginStyles);
 const useStyles = makeStyles(styles);
@@ -89,6 +90,7 @@ function HomePage(props) {
         <ProjectList/>
         <InvestorList/>
       </GridContainer>
+      <Footer />
     </div>
   );
 }
