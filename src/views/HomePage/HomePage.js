@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import Carousel from "react-slick";
 // material-ui components
@@ -21,6 +21,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { withStyles } from "@material-ui/styles";
 
 function HomePage(props) {
+
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   const settings = {
