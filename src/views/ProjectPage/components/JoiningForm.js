@@ -38,7 +38,7 @@ export default function JoiningForm(props){
     const classes = useStyles();
 
     return (
-        <GridContainer lg={4} xs={8} sm={10} {...rest}>
+        <GridContainer lg={12} xs={12} sm={12} {...rest}>
             <Card  className={classes.textCenter}>
                 <CardBody >
                     <h2>

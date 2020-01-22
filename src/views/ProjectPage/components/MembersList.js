@@ -48,7 +48,6 @@ class MembersList extends React.Component{
     }
 
     listMembers(component,page){
-        // console.log(component.state);
         if(page == "NEXT"){
             if( (component.state.currentPage + 1) * component.state.fetchingMembersAmount < component.state.loadedMembers.length + 3 ){
                 component.setState({currentPage: component.state.currentPage + 1})
@@ -63,6 +62,7 @@ class MembersList extends React.Component{
     }
 
     renderMembers(){
+        console.log(this.state.loadedMembers)
         
         return this.state.loadedMembers.slice(
             this.state.currentPage * this.state.fetchingMembersAmount,

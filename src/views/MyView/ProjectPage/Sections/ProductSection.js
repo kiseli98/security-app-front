@@ -19,7 +19,17 @@ import styles from "assets/jss/material-kit-react/views/landingPageSections/prod
 import Carousel from "react-slick";
 import Card from "../../../../components/Card/Card";
 import CustomLinearProgress from "../../../../components/CustomLinearProgress/CustomLinearProgress";
+import {
+  primaryColor,
+  warningColor,
+  dangerColor,
+  successColor,
+  infoColor,
+  roseColor
+} from "assets/jss/material-kit-react.js";
 
+
+import badgeStyle from "assets/jss/material-kit-react/components/badgeStyle.js"
 const settings = {
   dots: true,
   infinite: true,
@@ -29,20 +39,29 @@ const settings = {
   autoplay: true
 };
 
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles(
+  {
+    bold: {fontWeight: "bold"},
+    infoColor: infoColor,
+    ...styles
+  }
+);
 
-export default function ProductSection() {
+export default function ProductSection(props) {
   const classes = useStyles();
+  let progress = 0;
+  if(props.projectData){
+    progress = props.projectData.investedSum / props.projectData.targetSum * 100;
+    if(progress > 100){ progress = 100; } 
+  }
+
   return (
     <div className={classes.section}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={8}>
           <h2 className={classes.title}>Let{"'"}s talk our project</h2>
           <h5 className={classes.description}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Pellentesque accumsan tempor turpis, eu porttitor sapien volutpat
-            ac. Vivamus sit amet feugiat neque. Praesent placerat aliquam justo
-            non venenatis.
+            {props.projectData ? props.projectData.description : null }
           </h5>
         </GridItem>
       </GridContainer>
@@ -94,14 +113,36 @@ export default function ProductSection() {
               </Carousel>
             </Card>
           </GridItem>
+          <GridItem justify="center" style={{color: "#000"}}>
+            {props.projectData ?
+              <div>
+                <h3>
+                  Days passed <span className={classes.bold}>{props.projectData.daysPassed}</span>
+                  <br/>
+                  Days remaining <span
+                  className={classes.infoColor + " " + classes.bold}>{props.projectData.daysRemaining}</span>
+                </h3>
+              </div>
+              : null
+            }
+          </GridItem>
+
           <GridItem xs={12} sm={12} md={12}>
             <h2 style={{color: "#000"}}>
-              <span style={{fontWeight: "bold"}}>$5000 raised</span> of $10000
-            </h2>
+              {props.projectData ?
+                <div>
+                  <span style={{fontWeight: "bold"}}>
+                    ${props.projectData.investedSum} raised 
+                  </span>
+                    of ${props.projectData.targetSum}
+                </div>
+                : null }
+              </h2>
+
             <CustomLinearProgress
               variant="determinate"
               color="info"
-              value={50}
+              value={progress}
             />
             <div>
               <Button color="success"> Invest</Button>

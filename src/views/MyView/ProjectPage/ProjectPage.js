@@ -6,7 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import PageHeader from "components/MyComp/Header/Header.js";
 
 // @material-ui/icons
-
 // core components
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
@@ -29,7 +28,48 @@ const dashboardRoutes = [];
 
 const useStyles = makeStyles(styles);
 
+function calculateDayDifference(strDate) {
+  let currentDate = new Date();
+  let date = new Date(strDate.replace("-", "/"));
+  let timeDiff = currentDate - date.getTime();
+
+  // To calculate the no. of days between two dates
+  let days = timeDiff / (1000 * 3600 * 24);
+
+  return Math.floor(days);
+}
+
 export default function LandingPage(props) {
+  let projectName = props.match.params.projectName;
+  let [projectData, setProjectData ] = useState();
+  let [userData, setUserData ] = useState();
+  let [roleLevel, setRoleLevel ] = useState(1);
+  
+  useEffect(() => {
+    RestApiCalls.getRoleForProject(projectName)
+      .then(roleLevel => setRoleLevel(roleLevel.role));
+
+
+    RestApiCalls.loadProject(projectName)
+    .then(projectData => {
+      let daysPassed = calculateDayDifference(projectData.creationDate);
+      let daysRemaining = calculateDayDifference(projectData.targetDate);
+      if (daysRemaining > 0) {
+        daysRemaining = 0;
+      }
+      daysRemaining = Math.abs(daysRemaining);
+
+      setProjectData({
+          daysPassed,
+          daysRemaining,
+          ...projectData
+      });
+
+      RestApiCalls.loadUser(projectData.owner)
+        .then(userData => setUserData({userData}))
+    });
+  }, []);
+
   const classes = useStyles();
   const { ...rest } = props;
   return (
@@ -39,7 +79,7 @@ export default function LandingPage(props) {
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
-              <h1 className={classes.title}>[Generic Porject Name]</h1>
+              <h1 className={classes.title}>{projectName}</h1>
               <h4>
                 Every project page needs a small description after the big bold
                 title, that{"'"}s why we added this text here. Here is all the
@@ -61,14 +101,17 @@ export default function LandingPage(props) {
           </GridContainer>
         </div>
       </Parallax>
-      <div className={classNames(classes.main, classes.mainRaised)}>
-        <div className={classes.container}>
-          <ProductSection />
-          <TeamSection />
-          <WorkSection />
-        </div>
-      </div>
 
+      {/* {props.projectData ? */}
+        <div className={classNames(classes.main, classes.mainRaised)}>
+          <div className={classes.container}>
+            <ProductSection projectData={projectData}/>
+            <TeamSection projectName={projectName} roleLevel={roleLevel}/>
+          </div>
+        </div>
+        {/* : null
+      } */}
+      
       <Footer />
     </div>
   );

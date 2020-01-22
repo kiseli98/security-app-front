@@ -31,7 +31,8 @@ class ProjectList extends React.Component{
                 name={project.name} 
                 description={project.description} 
                 investedSum={project.investedSum} 
-                targetSum={project.targetSum}/>
+                targetSum={project.targetSum}
+                image={index + ".png"}/>
         ));
     }
     render(){

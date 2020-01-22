@@ -22,7 +22,7 @@ ReactDOM.render(
     <Router history={hist}>
     <Switch>
       <Route path="/project/:projectName" component={ProjectPage}/>
-      <Route path="/test-project" component={TestProject} />
+      <Route path="/test-project/:projectName" component={TestProject} />
       <Route path="/profile" component={ProfilePage} />
       <Route path="/register" component={RegisterPage} />
       <Route path="/login" component={LoginPage} />

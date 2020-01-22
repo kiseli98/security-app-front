@@ -4,6 +4,7 @@ import classNames from "classnames";
 // @material-ui/core components
 import {makeStyles} from "@material-ui/core/styles";
 
+import WorkSection from "./WorkSection.js";
 // @material-ui/icons
 
 // core components
@@ -21,10 +22,12 @@ import team2 from "assets/img/faces/christian.jpg";
 import team3 from "assets/img/faces/kendall.jpg";
 import InvestorCard from "../../../HomePage/components/InvestorCard";
 import RestApiCalls from "../../../utils/RestApiCalls";
+import MembersList from 'views/ProjectPage/components/MembersList';
+import JoiningForm from 'views/ProjectPage/components/JoiningForm';
 
 const useStyles = makeStyles(styles);
 
-export default function TeamSection() {
+export default function TeamSection(props) {
   const [loadedInvestors, setLoadedInvestors] = React.useState([]);
 
   useEffect(() => {
@@ -42,7 +45,13 @@ export default function TeamSection() {
   );
   return (
     <div className={classes.section}>
-      <h2 className={classes.title}>Here is our team</h2>
+      <GridContainer justify="center" align='center'>
+      {
+          props.roleLevel == 1 ?
+              <WorkSection />
+            :
+            <div>
+                    <h2 className={classes.title}>Here is our team</h2>
       <div>
         <GridContainer>
           <GridItem xs={12} sm={12} md={4}>
@@ -163,20 +172,10 @@ export default function TeamSection() {
         </GridContainer>
       </div>
 
-      <h2 className={classes.title}>Our Investors:</h2>
-      <GridContainer>
-        {
-          loadedInvestors.slice(0,3).map( (investor,index) => (
-            <InvestorCard
-              sm={4} lg={4}
-              key={index}
-              name={investor.name}
-              about={investor.about}
-              investedSum={investor.investedSum}
-              userImage={investor.userImage}
-            />
-          ))
-        };
+              <h2 className={classes.title}>Our Investors:</h2>
+              <MembersList projectName={props.projectName} roleLevel={props.roleLevel}/>
+            </div>
+        }
       </GridContainer>
     </div>
   );
